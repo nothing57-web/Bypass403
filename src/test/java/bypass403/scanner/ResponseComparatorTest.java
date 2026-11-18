@@ -11,6 +11,8 @@ class ResponseComparatorTest {
     void classifiesStatusAndBodyChanges() {
         assertTrue(comparator.isBypass(new ResponseSnapshot(403, 100, "Forbidden"), new ResponseSnapshot(200, 200, "Admin")));
         assertFalse(comparator.isBypass(new ResponseSnapshot(403, 100, "Forbidden"), new ResponseSnapshot(403, 100, "Forbidden")));
+        assertFalse(comparator.isBypass(new ResponseSnapshot(403, 100, "Forbidden"), new ResponseSnapshot(400, 100, "Bad Request")));
+        assertFalse(comparator.isBypass(new ResponseSnapshot(403, 100, "Forbidden"), new ResponseSnapshot(308, 100, "Redirect")));
         assertTrue(comparator.isBypass(new ResponseSnapshot(200, 100, "Before"), new ResponseSnapshot(200, 101, "After")));
         assertFalse(comparator.isBypass(new ResponseSnapshot(200, 100, "Identical"), new ResponseSnapshot(200, 100, "Identical")));
     }

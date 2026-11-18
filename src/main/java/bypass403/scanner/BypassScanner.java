@@ -113,7 +113,7 @@ public final class BypassScanner {
             long elapsed = (System.nanoTime() - start) / 1_000_000;
             ResponseSnapshot candidateResponse = new ResponseSnapshot(sent.status(), sent.length(), sent.body());
             boolean bypass = originalResponse == null
-                ? sent.status() != 403 && sent.status() > 0
+                ? comparator.isSuccessful(sent.status())
                 : comparator.isBypass(originalResponse, candidateResponse);
             BypassResult result = new BypassResult(original.url(), "Candidate #" + index, candidate,
                 sent.status(), sent.length(), elapsed, bypass);
