@@ -5,3 +5,5 @@ gradle.zip
 .idea/
 *.class
 *.log
+
+.vscode/
