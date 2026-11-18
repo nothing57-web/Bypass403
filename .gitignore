@@ -1,0 +1,7 @@
+.gradle/
+build/
+gradle-8.5/
+gradle.zip
+.idea/
+*.class
+*.log
